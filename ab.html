@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+ function getdata()
+ {
+     const xhttp= new XMLHttpRequest();
+
+     xhttp.open("GET","https://jsonplaceholder.typicode.com/users", true);
+
+     xhttp.onload = function(){
+
+         if(this.status === 200)
+         {
+         var list=document.getElementById("display");
+         var data =JSON.parse(this.responseText);
+         var str=""
+         for(key in data){
+             str += `<li>${data[key].name}</li>`;
+         }
+         list.innerHTML= str;
+         }
+        }
+     xhttp.send();  
+    }
+</script>
+<body>
+<ul id ="display"> </ul>
+<button onclick="getdata()"> get</button>
+</body>
+</html>
